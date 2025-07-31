@@ -8,6 +8,7 @@ class StockSpanner {
 public:
 
     vector<int> prices;
+    stack<pair<int,int>> st;
 
     StockSpanner() {
         
@@ -33,6 +34,19 @@ public:
         
         return n-p-1;
     }
+
+    int next1(int price){
+        int span = 1;
+
+        while(!st.empty() && st.top().first <= price){
+            span+=st.top().second;
+            st.pop();
+        }
+
+        st.push({price, span});
+
+        return span;
+    }
 };
 
 
@@ -40,12 +54,12 @@ int main(){
 
     StockSpanner st;
 
-    cout << st.next(100) << '\n';
-    cout << st.next(80) << '\n';
-    cout << st.next(60) << '\n';
-    cout << st.next(70) << '\n';
-    cout << st.next(60) << '\n';
-    cout << st.next(75) << '\n';
-    cout << st.next(85) << '\n';
+    cout << st.next1(100) << '\n';
+    cout << st.next1(80) << '\n';
+    cout << st.next1(60) << '\n';
+    cout << st.next1(70) << '\n';
+    cout << st.next1(60) << '\n';
+    cout << st.next1(75) << '\n';
+    cout << st.next1(85) << '\n';
 
 }
