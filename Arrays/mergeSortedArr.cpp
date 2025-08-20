@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void merge(vector<int> &nums1, int m, vector<int> &nums2, int n)
+{
+
+    for (int i = m; i < nums1.size(); i++)
+    {
+        nums1[i] = nums2[i - m];
+    }
+
+    sort(nums1.begin(), nums1.end());
+    return;
+}
+
+void merge(vector<int> &nums1, int m, vector<int> &nums2, int n)
+{
+
+    if (!m)
+    {
+        nums1 = nums2;
+        return;
+    }
+
+    int i = m - 1;
+    int j = n - 1;
+
+    int k = m + n - 1;
+
+    while (i >= 0 && j >= 0)
+    {
+
+        if (nums2[j] >= nums1[i])
+        {
+            nums1[k] = nums2[j];
+            k--, j--;
+        }
+
+        else
+        {
+            nums1[k] = nums1[i];
+            k--, i--;
+        }
+    }
+
+    while (i >= 0)
+    {
+        nums1[k--] = nums1[i--];
+    }
+
+    while (j >= 0)
+    {
+        nums1[k--] = nums2[j--];
+    }
+}
