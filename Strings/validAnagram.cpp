@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
+f
 bool isAnagram(string s, string t) {
         
         vector<int> hash(26,0);
